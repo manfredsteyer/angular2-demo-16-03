@@ -1,4 +1,4 @@
-System.register(['angular2/core', "angular2/http"], function(exports_1) {
+System.register(['angular2/core', "../services/flug.service", "../services/app-services"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,34 +8,31 @@ System.register(['angular2/core', "angular2/http"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1;
+    var core_1, flug_service_1, app_services_1;
     var FlugSuchen;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (http_1_1) {
-                http_1 = http_1_1;
+            function (flug_service_1_1) {
+                flug_service_1 = flug_service_1_1;
+            },
+            function (app_services_1_1) {
+                app_services_1 = app_services_1_1;
             }],
         execute: function() {
             FlugSuchen = (function () {
-                function FlugSuchen(http) {
-                    this.http = http;
+                function FlugSuchen(flugService) {
+                    this.flugService = flugService;
                     this.von = 'Graz';
                     this.nach = 'Hamburg';
                     this.fluege = [];
                 }
                 FlugSuchen.prototype.suchen = function () {
                     var _this = this;
-                    var search = new http_1.URLSearchParams();
-                    search.set('abflugort', this.von);
-                    search.set('zielort', this.nach);
-                    var url = "http://www.angular.at/api/flug";
-                    this
-                        .http
-                        .get(url, { search: search })
-                        .map(function (response) { return response.json(); })
+                    this.flugService
+                        .find(this.von, this.nach)
                         .subscribe(// <-- Observable, RxJS
                     function (fluege) {
                         _this.fluege = fluege;
@@ -59,9 +56,10 @@ System.register(['angular2/core', "angular2/http"], function(exports_1) {
                 FlugSuchen = __decorate([
                     core_1.Component({
                         selector: 'flug-suchen',
-                        templateUrl: 'app/flug-suchen/flug-suchen.component.html'
+                        templateUrl: 'app/flug-suchen/flug-suchen.component.html',
+                        providers: [app_services_1.APP_SERVICES]
                     }), 
-                    __metadata('design:paramtypes', [http_1.Http])
+                    __metadata('design:paramtypes', [flug_service_1.FlugService])
                 ], FlugSuchen);
                 return FlugSuchen;
             })();

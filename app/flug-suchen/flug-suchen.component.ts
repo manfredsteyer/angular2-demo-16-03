@@ -1,12 +1,17 @@
 import {Component } from 'angular2/core';
 import {Flug} from "../models/flug";
-import {Http, URLSearchParams} from "angular2/http";
+import {Http, URLSearchParams, Headers} from "angular2/http";
+import {FlugService} from "../services/flug.service";
+import {provide} from "angular2/core";
+import {APP_SERVICES} from "../services/app-services";
 
 declare var fetch: any;
 
+
 @Component({
     selector: 'flug-suchen',
-    templateUrl: 'app/flug-suchen/flug-suchen.component.html'
+    templateUrl: 'app/flug-suchen/flug-suchen.component.html',
+    providers: [APP_SERVICES]
 })
 export class FlugSuchen {
 
@@ -16,21 +21,13 @@ export class FlugSuchen {
     public fluege: Array<Flug> = [];
     public selectedFlug: Flug;
 
-    constructor(private http: Http) {
-
+    constructor(private flugService: FlugService) {
     }
 
     public suchen() {
 
-        var search = new URLSearchParams();
-        search.set('abflugort', this.von);
-        search.set('zielort', this.nach);
-
-        var url = "http://www.angular.at/api/flug";
-        this
-            .http
-            .get(url, { search })
-            .map(response => response.json())
+        this.flugService
+            .find(this.von, this.nach)
             .subscribe( // <-- Observable, RxJS
                 (fluege: Array<Flug>) => {
                     this.fluege = fluege;

@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router"], function(exports_1) {
+System.register(["angular2/core", "angular2/router", "../services/flug.service"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, flug_service_1;
     var FlugEdit;
     return {
         setters:[
@@ -17,19 +17,43 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (flug_service_1_1) {
+                flug_service_1 = flug_service_1_1;
             }],
         execute: function() {
             FlugEdit = (function () {
-                function FlugEdit(params) {
+                function FlugEdit(flugService, params) {
+                    var _this = this;
+                    this.flugService = flugService;
+                    this.flug = {};
                     this.info = "Flug Detail";
                     var id = params.get('id');
                     this.id = id;
+                    flugService.findById(id).subscribe(function (flug) {
+                        _this.flug = flug;
+                        _this.error = "";
+                    }, function (err) {
+                        console.error(err);
+                        _this.error = "Fehler beim Laden!";
+                    });
                 }
+                FlugEdit.prototype.save = function () {
+                    var _this = this;
+                    this.flugService.save(this.flug).subscribe(function (message) {
+                        //this.message = message;
+                        _this.error = "";
+                        _this.message = "Flug wurde gespeichert!";
+                    }, function (err) {
+                        console.error(err);
+                        _this.error = err.text();
+                    });
+                };
                 FlugEdit = __decorate([
                     core_1.Component({
                         templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html'
                     }), 
-                    __metadata('design:paramtypes', [router_1.RouteParams])
+                    __metadata('design:paramtypes', [flug_service_1.FlugService, router_1.RouteParams])
                 ], FlugEdit);
                 return FlugEdit;
             })();

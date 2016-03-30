@@ -24,7 +24,11 @@
     <flug-card
             [item]="flug"
             [(selectedItem)]="selectedFlug">
+
+        <a class="btn btn-default" [routerLink]="['../FlugEdit', { id: flug.id } ]">Editieren</a>
+
     </flug-card>
+
 
     <!--
                 [selectedItem]="selectedFlug"
@@ -49,7 +53,7 @@
         <td>
             <a style="cursor: hand" href="javascript:void(0)" (click)="select(flug)">Auswählen</a>
             |
-            <a [routerLink]="['../FlugEdit', { id: flug.id } ]">Editieren</a>
+
 
         </td>
     </tr>

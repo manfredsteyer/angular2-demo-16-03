@@ -33,19 +33,18 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                     this.flugService = flugService;
                     this.von = 'Graz';
                     this.nach = 'Hamburg';
-                    this.fluege = [];
                 }
+                Object.defineProperty(FlugSuchen.prototype, "fluege", {
+                    // public fluege: Array<Flug> = [];
+                    get: function () {
+                        return this.flugService.fluege;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 FlugSuchen.prototype.suchen = function () {
-                    var _this = this;
                     this.flugService
-                        .find(this.von, this.nach)
-                        .subscribe(// <-- Observable, RxJS
-                    function (fluege) {
-                        _this.fluege = fluege;
-                    }, function (err) {
-                        console.error('Fehler beim Laden von Flügen!');
-                        console.error(err);
-                    });
+                        .find(this.von, this.nach);
                     /*
                                 .then((fluege: Array<Flug>) => {
                                     this.fluege = fluege;
@@ -62,7 +61,7 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                 FlugSuchen = __decorate([
                     core_1.Component({
                         selector: 'flug-suchen',
-                        templateUrl: '/angular2-steyer/app/flug-suchen/flug-suchen.component.html',
+                        templateUrl: 'app/flug-suchen/flug-suchen.component.html',
                         providers: [app_services_1.APP_SERVICES],
                         directives: [router_1.ROUTER_DIRECTIVES,],
                         pipes: [ort_pipe_1.OrtPipe]

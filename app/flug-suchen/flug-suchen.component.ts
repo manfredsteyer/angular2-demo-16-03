@@ -13,7 +13,7 @@ declare var fetch: any;
 
 @Component({
     selector: 'flug-suchen',
-    templateUrl: '/angular2-steyer/app/flug-suchen/flug-suchen.component.html',
+    templateUrl: 'app/flug-suchen/flug-suchen.component.html',
     providers: [APP_SERVICES],
     directives: [ROUTER_DIRECTIVES, /*FlugCard*/],
     pipes: [OrtPipe]
@@ -23,25 +23,21 @@ export class FlugSuchen {
     public von: string = 'Graz';
     public nach: string = 'Hamburg';
 
-    public fluege: Array<Flug> = [];
     public selectedFlug: Flug;
 
     constructor(private flugService: FlugService) {
     }
 
+    // public fluege: Array<Flug> = [];
+
+    public get fluege() {
+        return this.flugService.fluege;
+    }
+
     public suchen() {
 
         this.flugService
-            .find(this.von, this.nach)
-            .subscribe( // <-- Observable, RxJS
-                (fluege: Array<Flug>) => {
-                    this.fluege = fluege;
-                },
-                (err) => {
-                    console.error('Fehler beim Laden von Flügen!');
-                    console.error(err);
-                }
-            );
+            .find(this.von, this.nach);
 
 /*
             .then((fluege: Array<Flug>) => {

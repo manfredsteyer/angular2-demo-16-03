@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router", "../flug-suchen/flug-suchen.component", "../passagier-suchen/passagier-suchen", "../flug-edit/flug-edit"], function(exports_1) {
+System.register(["angular2/core", "angular2/router", "../flug-suchen/flug-suchen.component", "../passagier-suchen/passagier-suchen", "../flug-edit/flug-edit", "../services/flug.service"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/router", "../flug-suchen/flug-suchen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, flug_suchen_component_1, passagier_suchen_1, flug_edit_1, router_2;
+    var core_1, router_1, flug_suchen_component_1, passagier_suchen_1, flug_edit_1, router_2, flug_service_1;
     var FlugBuchen;
     return {
         setters:[
@@ -27,6 +27,9 @@ System.register(["angular2/core", "angular2/router", "../flug-suchen/flug-suchen
             },
             function (flug_edit_1_1) {
                 flug_edit_1 = flug_edit_1_1;
+            },
+            function (flug_service_1_1) {
+                flug_service_1 = flug_service_1_1;
             }],
         execute: function() {
             FlugBuchen = (function () {
@@ -35,7 +38,8 @@ System.register(["angular2/core", "angular2/router", "../flug-suchen/flug-suchen
                 FlugBuchen = __decorate([
                     core_1.Component({
                         templateUrl: 'app/flug-buchen/flug-buchen.html',
-                        directives: [router_2.ROUTER_DIRECTIVES]
+                        directives: [router_2.ROUTER_DIRECTIVES],
+                        providers: [flug_service_1.FlugService]
                     }),
                     router_1.RouteConfig([
                         { path: 'flug-suchen', component: flug_suchen_component_1.FlugSuchen, name: 'FlugSuchen', useAsDefault: true },

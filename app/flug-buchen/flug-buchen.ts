@@ -6,10 +6,12 @@ import {FlugSuchen} from "../flug-suchen/flug-suchen.component";
 import {PassagierSuchen} from "../passagier-suchen/passagier-suchen";
 import {FlugEdit} from "../flug-edit/flug-edit";
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {FlugService} from "../services/flug.service";
 
 @Component({
     templateUrl: 'app/flug-buchen/flug-buchen.html',
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [FlugService]
 })
 @RouteConfig([
     { path: 'flug-suchen', component: FlugSuchen, name: 'FlugSuchen', useAsDefault: true },

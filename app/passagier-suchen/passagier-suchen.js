@@ -22,7 +22,7 @@ System.register(["angular2/core"], function(exports_1) {
                 }
                 PassagierSuchen = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/passagier-suchen/passagier-suchen.html'
+                        templateUrl: '/angular2-steyer/app/passagier-suchen/passagier-suchen.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], PassagierSuchen);

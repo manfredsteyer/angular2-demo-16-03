@@ -10,12 +10,15 @@ import {PLATFORM_PIPES} from "angular2/core";
 import {OrtPipe} from "./pipes/ort.pipe";
 import {ROUTER_PROVIDERS} from "angular2/router";
 import {APP_BASE_HREF} from "angular2/router";
+import {PLATFORM_DIRECTIVES} from "angular2/core";
+import {FlugCard} from "./flug-card/flug-card";
 
 var services = [
     // provide(PLATFORM_PIPES, {useValue: OrtPipe, multi: true}),
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
-    provide(APP_BASE_HREF, {useValue: '/angular2-starter'})
+    provide(APP_BASE_HREF, {useValue: '/angular2-steyer'}),
+    provide(PLATFORM_DIRECTIVES, {useValue: FlugCard, multi: true })
 ];
 
 bootstrap(AppComponent, services);

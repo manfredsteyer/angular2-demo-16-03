@@ -6,15 +6,16 @@ import {provide} from "angular2/core";
 import {APP_SERVICES} from "../services/app-services";
 import {OrtPipe} from "../pipes/ort.pipe";
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {FlugCard} from "../flug-card/flug-card";
 
 declare var fetch: any;
 
 
 @Component({
     selector: 'flug-suchen',
-    templateUrl: 'app/flug-suchen/flug-suchen.component.html',
+    templateUrl: '/angular2-steyer/app/flug-suchen/flug-suchen.component.html',
     providers: [APP_SERVICES],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, /*FlugCard*/],
     pipes: [OrtPipe]
 })
 export class FlugSuchen {

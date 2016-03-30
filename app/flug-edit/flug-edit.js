@@ -27,7 +27,7 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
                 }
                 FlugEdit = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/flug-edit/flug-edit.html'
+                        templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html'
                     }), 
                     __metadata('design:paramtypes', [router_1.RouteParams])
                 ], FlugEdit);

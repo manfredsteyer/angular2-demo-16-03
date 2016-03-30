@@ -19,11 +19,27 @@
 
 </form>
 
-<table class="table table-striped" [hidden]="fluege.length == 0">
+<div *ngFor="#flug of fluege" class="col-sm-4">
+
+    <flug-card
+            [item]="flug"
+            [(selectedItem)]="selectedFlug">
+    </flug-card>
 
     <!--
-    [ngClass]="{ 'active': flug.id == selectedFlug.id  }"
+                [selectedItem]="selectedFlug"
+            (selectedItemChange)="selectedFlug = $event">
+
     -->
+</div>
+
+<pre *ngIf="selectedFlug">
+    {{ selectedFlug | json }}
+</pre>
+
+<!--
+<table class="table table-striped" [hidden]="fluege.length == 0">
+
     <tr *ngFor="#flug of fluege"
         [class.active]="flug.id == selectedFlug?.id">
         <td>{{flug.id}}</td>
@@ -33,11 +49,10 @@
         <td>
             <a style="cursor: hand" href="javascript:void(0)" (click)="select(flug)">Auswählen</a>
             |
-            <a [routerLink]="['/FlugEdit', { id: flug.id } ]">Editieren</a>
+            <a [routerLink]="['../FlugEdit', { id: flug.id } ]">Editieren</a>
 
         </td>
     </tr>
 
 </table>
-
-<pre>{{ selectedFlug | json }}</pre>
+-->

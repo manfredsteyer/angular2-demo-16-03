@@ -6,6 +6,7 @@ import {Home} from "./home/home";
 import {FlugSuchen} from "./flug-suchen/flug-suchen.component";
 import {PassagierSuchen} from "./passagier-suchen/passagier-suchen";
 import {FlugEdit} from "./flug-edit/flug-edit";
+import {FlugBuchen} from "./flug-buchen/flug-buchen";
 
 @Component({
     selector: 'my-app',
@@ -14,9 +15,7 @@ import {FlugEdit} from "./flug-edit/flug-edit";
 })
 @RouteConfig([
     { path: '/home', component: Home, name: 'Home', useAsDefault: true },
-    { path: '/flug-suchen', component: FlugSuchen, name: 'FlugSuchen'},
-    { path: '/passagier-suchen', component: PassagierSuchen, name: 'PassagierSuchen' },
-    { path: '/flug-edit/:id', component: FlugEdit, name: 'FlugEdit'}
+    { path: '/flug-buchen/...', component: FlugBuchen, name: 'FlugBuchen'}
 ])
 export class AppComponent {
 

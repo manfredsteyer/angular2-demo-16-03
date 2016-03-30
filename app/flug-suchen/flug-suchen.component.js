@@ -62,9 +62,9 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                 FlugSuchen = __decorate([
                     core_1.Component({
                         selector: 'flug-suchen',
-                        templateUrl: 'app/flug-suchen/flug-suchen.component.html',
+                        templateUrl: '/angular2-steyer/app/flug-suchen/flug-suchen.component.html',
                         providers: [app_services_1.APP_SERVICES],
-                        directives: [router_1.ROUTER_DIRECTIVES],
+                        directives: [router_1.ROUTER_DIRECTIVES,],
                         pipes: [ort_pipe_1.OrtPipe]
                     }), 
                     __metadata('design:paramtypes', [flug_service_1.FlugService])

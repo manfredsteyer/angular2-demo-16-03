@@ -1,9 +1,6 @@
 System.register(["./flug.service", "angular2/core"], function(exports_1) {
     var flug_service_1, core_1;
     var APP_SERVICES;
-    function doStuff() {
-    }
-    exports_1("doStuff", doStuff);
     return {
         setters:[
             function (flug_service_1_1) {

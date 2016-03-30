@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 
+    <!--
+        <base href="">
+    -->
+    <!-- http://localhost:8080/angular2-starter/x/y/z -->
+
     <!-- 1. Load libraries -->
     <!-- IE required polyfills, in this exact order -->
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
@@ -16,6 +21,7 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
 
     <!-- 2. Configure SystemJS -->
     <script>
@@ -34,8 +40,8 @@
 
 <!-- 3. Display the application -->
 <body>
-<div class="container">
-    <flug-suchen>Loading...</flug-suchen>
-</div>
+
+    <my-app>Loading...</my-app>
+
 </body>
 </html>

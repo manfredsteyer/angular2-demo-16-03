@@ -1,10 +1,18 @@
 import {Component} from "angular2/core";
+import {RouteParams} from "angular2/router";
 
 @Component({
-    templateUrl: 'app/home/flug-edit.html'
+    templateUrl: 'app/flug-edit/flug-edit.html'
 })
-export class Home {
+export class FlugEdit {
 
-    info = "Willkommen!";
+    id: string;
+
+    constructor(params: RouteParams) {
+        var id = params.get('id');
+        this.id = id;
+    }
+
+    info = "Flug Detail";
 
 }

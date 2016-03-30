@@ -4,6 +4,8 @@ import {Http, URLSearchParams, Headers} from "angular2/http";
 import {FlugService} from "../services/flug.service";
 import {provide} from "angular2/core";
 import {APP_SERVICES} from "../services/app-services";
+import {OrtPipe} from "../pipes/ort.pipe";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 declare var fetch: any;
 
@@ -11,7 +13,9 @@ declare var fetch: any;
 @Component({
     selector: 'flug-suchen',
     templateUrl: 'app/flug-suchen/flug-suchen.component.html',
-    providers: [APP_SERVICES]
+    providers: [APP_SERVICES],
+    directives: [ROUTER_DIRECTIVES],
+    pipes: [OrtPipe]
 })
 export class FlugSuchen {
 

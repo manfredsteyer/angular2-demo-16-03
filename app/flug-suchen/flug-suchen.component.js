@@ -1,4 +1,4 @@
-System.register(['angular2/core', "../services/flug.service", "../services/app-services"], function(exports_1) {
+System.register(['angular2/core', "../services/flug.service", "../services/app-services", "../pipes/ort.pipe", "angular2/router"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, flug_service_1, app_services_1;
+    var core_1, flug_service_1, app_services_1, ort_pipe_1, router_1;
     var FlugSuchen;
     return {
         setters:[
@@ -20,6 +20,12 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
             },
             function (app_services_1_1) {
                 app_services_1 = app_services_1_1;
+            },
+            function (ort_pipe_1_1) {
+                ort_pipe_1 = ort_pipe_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             FlugSuchen = (function () {
@@ -57,7 +63,9 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                     core_1.Component({
                         selector: 'flug-suchen',
                         templateUrl: 'app/flug-suchen/flug-suchen.component.html',
-                        providers: [app_services_1.APP_SERVICES]
+                        providers: [app_services_1.APP_SERVICES],
+                        directives: [router_1.ROUTER_DIRECTIVES],
+                        pipes: [ort_pipe_1.OrtPipe]
                     }), 
                     __metadata('design:paramtypes', [flug_service_1.FlugService])
                 ], FlugSuchen);

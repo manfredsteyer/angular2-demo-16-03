@@ -28,9 +28,14 @@
         [class.active]="flug.id == selectedFlug?.id">
         <td>{{flug.id}}</td>
         <td>{{flug.datum.substr(0,10)}}</td>
-        <td>{{flug.abflugort}}</td>
-        <td>{{flug.zielort}}</td>
-        <td><a style="cursor: hand" (click)="select(flug)">Auswählen</a></td>
+        <td>{{flug.abflugort | ort:'short'}}</td>
+        <td>{{flug.zielort | ort:'long' }}</td>
+        <td>
+            <a style="cursor: hand" href="javascript:void(0)" (click)="select(flug)">Auswählen</a>
+            |
+            <a [routerLink]="['/FlugEdit', { id: flug.id } ]">Editieren</a>
+
+        </td>
     </tr>
 
 </table>

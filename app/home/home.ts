@@ -1,3 +1,10 @@
-/**
- * Created by steyer on 30.03.2016.
- */
+import {Component} from "angular2/core";
+
+@Component({
+    templateUrl: 'app/home/home.html'
+})
+export class Home {
+
+    info = "Willkommen!";
+
+}

@@ -7,6 +7,13 @@ import {APP_SERVICES} from "../services/app-services";
 import {OrtPipe} from "../pipes/ort.pipe";
 import {ROUTER_DIRECTIVES} from "angular2/router";
 import {FlugCard} from "../flug-card/flug-card";
+import {ChangeDetectionStrategy} from "angular2/core";
+import {ControlGroup} from "angular2/common";
+import {FormBuilder} from "angular2/common";
+import {Validators} from "angular2/common";
+import {OrtValidator} from "../validation/OrtValidator";
+import {OrtAsyncValidator} from "../validation/OrtAsyncValidator";
+import {NotEqualValidator, validateAlternative} from "../validation/NotEqualValidator";
 
 declare var fetch: any;
 
@@ -20,12 +27,44 @@ declare var fetch: any;
 })
 export class FlugSuchen {
 
-    public von: string = 'Graz';
-    public nach: string = 'Hamburg';
+    // public von: string = 'Graz';
+    // public nach: string = 'Hamburg';
+
+    public filter: ControlGroup;
 
     public selectedFlug: Flug;
 
-    constructor(private flugService: FlugService) {
+    constructor(private flugService: FlugService, fb: FormBuilder) {
+
+        this.filter = fb.group({
+            von: [
+                    'Graz',
+                    Validators.compose([
+                        Validators.required, // c --> { required: true }
+                        Validators.minLength(3),
+                        Validators.maxLength(30),
+                        OrtValidator.validate
+                    ]),
+                    Validators.composeAsync([
+                        OrtAsyncValidator.validateAsync
+                    ])
+                ],
+            nach: ['Hamburg', Validators.required]
+        });
+
+        this.filter.validator = NotEqualValidator.validate('von', 'nach');
+        // this.filter.validator = validateAlternative;
+
+        // this.filter.controls.von.valid
+        // this.filter.controls.von.subscribe
+        this.filter.valueChanges.subscribe(
+            () => {
+                console.debug("Änderung im Formular")
+            }
+        )
+
+
+
     }
 
     // public fluege: Array<Flug> = [];
@@ -36,8 +75,11 @@ export class FlugSuchen {
 
     public suchen() {
 
+        var von = this.filter.value.von;
+        var nach = this.filter.value.nach;
+
         this.flugService
-            .find(this.von, this.nach);
+            .find(von, nach);
 
 /*
             .then((fluege: Array<Flug>) => {

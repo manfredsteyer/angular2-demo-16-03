@@ -8,7 +8,7 @@ System.register(["angular2/core"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, core_2, core_3, core_4;
+    var core_1, core_2, core_3, core_4, core_5;
     var FlugCard;
     return {
         setters:[
@@ -17,6 +17,7 @@ System.register(["angular2/core"], function(exports_1) {
                 core_2 = core_1_1;
                 core_3 = core_1_1;
                 core_4 = core_1_1;
+                core_5 = core_1_1;
             }],
         execute: function() {
             FlugCard = (function () {
@@ -41,7 +42,8 @@ System.register(["angular2/core"], function(exports_1) {
                 FlugCard = __decorate([
                     core_1.Component({
                         selector: 'flug-card',
-                        templateUrl: '/angular2-steyer/app/flug-card/flug-card.html'
+                        templateUrl: '/angular2-steyer/app/flug-card/flug-card.html',
+                        changeDetection: core_5.ChangeDetectionStrategy.OnPush
                     }), 
                     __metadata('design:paramtypes', [])
                 ], FlugCard);

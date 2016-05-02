@@ -22,10 +22,8 @@ services = [
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
     provide('BASE_URL', {useValue: 'http://www.angular.at/api'}),
-    //provide(APP_BASE_HREF, {useValue: '/angular2-steyer/'}),
     provide(PLATFORM_DIRECTIVES, {useValue: FlugCard, multi: true}),
-    provide(LocationStrategy,
-        {useClass: HashLocationStrategy})
+    provide(LocationStrategy, {useClass: HashLocationStrategy})
 
 ];
 

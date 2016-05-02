@@ -1,6 +1,7 @@
-import {Component} from "angular2/core";
+
 import {RouteParams} from "angular2/router";
 import {FlugService} from "../services/flug.service";
+import {Component} from "angular2/core";
 
 @Component({
     templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html'

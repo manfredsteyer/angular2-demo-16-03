@@ -1,13 +1,43 @@
 <h1>Flug suchen!</h1>
 
-<form>
+<form [ngFormModel]="filter">
     <div class="form-group">
         <label>Von</label>
-        <input class="form-control" [(ngModel)]="von">
+        <input class="form-control" ngControl="von">
+
+        <div *ngIf="!filter.controls.von.valid && !filter.controls.von.pending">
+            Von weist Fehler auf!
+        </div>
+
+        <div *ngIf="filter.hasError('route')">
+            Das ist doch eine unsinnige Route!!
+        </div>
+
+        <div *ngIf="filter.controls.von.hasError('required')">
+            Von ist doch ein Pflichtfeld!
+        </div>
+        <div *ngIf="filter.controls.von.hasError('minlength')">
+            Von muss doch min. 3 Zeichen haben!
+        </div>
+        <div *ngIf="filter.controls.von.hasError('maxlength')">
+            Von darf doch max. 30 Zeichen haben!
+        </div>
+        <div *ngIf="filter.controls.von.hasError('ort')">
+            Dieser Ort wird doch gar nicht angeflogen!
+        </div>
+        <div *ngIf="filter.controls.von.hasError('ortAsync')">
+            Für diesen Ort sind doch alle Flüge ausgebucht!
+        </div>
+        <div *ngIf="filter.controls.von.pending">
+            <marquee>
+                Validierung wird gerade ausgeführt!!
+            </marquee>
+        </div>
+
     </div>
     <div class="form-group">
         <label>Nach</label>
-        <input class="form-control" [(ngModel)]="nach">
+        <input class="form-control" ngControl="nach">
     </div>
     <div class="form-group">
         <input

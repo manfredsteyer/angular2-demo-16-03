@@ -31,7 +31,6 @@ System.register(['angular2/platform/browser', './app.component', 'rxjs/add/opera
                 http_1.HTTP_PROVIDERS,
                 router_1.ROUTER_PROVIDERS,
                 core_1.provide('BASE_URL', { useValue: 'http://www.angular.at/api' }),
-                //provide(APP_BASE_HREF, {useValue: '/angular2-steyer/'}),
                 core_1.provide(core_2.PLATFORM_DIRECTIVES, { useValue: flug_card_1.FlugCard, multi: true }),
                 core_1.provide(router_2.LocationStrategy, { useClass: router_3.HashLocationStrategy })
             ];

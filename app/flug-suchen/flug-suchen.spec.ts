@@ -28,11 +28,12 @@ describe('FlugSuchen', () => {
     ]);
     
     it('should have no selected flight initially', inject([FlugSuchen], (flugSuchen: FlugSuchen) => {
-        expect(flugSuchen.selectedFlug).toBeUndefined();
+        expect(flugSuchen.selectedFlug)
+                             .toBeUndefined();
     }));
     
     it('should load flights', injectAsync([FlugSuchen], (flugSuchen: FlugSuchen) => {
-
+            // Arrange
             flugSuchen.filter.controls['von'].value = "Graz";
             flugSuchen.filter.controls['nach'].value = "Hamburg";
 

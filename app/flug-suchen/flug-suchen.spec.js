@@ -38,9 +38,11 @@ System.register(['angular2/testing', 'angular2/core', './flug-suchen.component',
                     core_1.provide(flug_service_1.FlugService, { useClass: FlugServiceMock }),
                 ]; });
                 testing_1.it('should have no selected flight initially', testing_1.inject([flug_suchen_component_1.FlugSuchen], function (flugSuchen) {
-                    expect(flugSuchen.selectedFlug).toBeUndefined();
+                    expect(flugSuchen.selectedFlug)
+                        .toBeUndefined();
                 }));
                 testing_1.it('should load flights', testing_1.injectAsync([flug_suchen_component_1.FlugSuchen], function (flugSuchen) {
+                    // Arrange
                     flugSuchen.filter.controls['von'].value = "Graz";
                     flugSuchen.filter.controls['nach'].value = "Hamburg";
                     return flugSuchen.suchen().then(function (fluege) {

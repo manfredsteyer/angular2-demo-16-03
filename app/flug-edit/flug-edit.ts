@@ -9,6 +9,7 @@ import {DateComponent} from "../date-component/date-component";
 
 import {CanActivate, CanDeactivate, OnActivate, OnDeactivate} from 'angular2/router';
 import {Home} from "../home/home";
+import {ComponentInstruction} from "angular2/router";
 
 @Component({
     templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html',
@@ -19,9 +20,8 @@ import {Home} from "../home/home";
         DateComponent
     ]
 })
-@CanActivate((next, prev) => {
-    //next.componentType = Home;
-    // next.componentType = Home;
+@CanActivate(function(next, prev) {
+
     return true;
 })
 export class FlugEdit

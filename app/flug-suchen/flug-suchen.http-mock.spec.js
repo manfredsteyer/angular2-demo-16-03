@@ -50,8 +50,10 @@ System.register(['angular2/testing', 'angular2/core', 'angular2/common', './flug
                             c.mockRespond(new http_1.Response(new http_1.ResponseOptions({ body: '[{"id": 1, "abflugort": "Graz", "zielort": "Hamburg", "datum": "2017-01-01"}]' })));
                         }
                     });
-                    flugSuchen.filter.controls['von'].value = "Graz";
-                    flugSuchen.filter.controls['nach'].value = "Hamburg";
+                    var von = flugSuchen.filter.controls['von'];
+                    var nach = flugSuchen.filter.controls['nach'];
+                    von.updateValue('Graz');
+                    nach.updateValue('Hamburg');
                     // Act
                     return flugSuchen.suchen().then(function (fluege) {
                         expect(fluege.length).toEqual(1);

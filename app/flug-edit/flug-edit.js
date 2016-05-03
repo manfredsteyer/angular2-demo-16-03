@@ -107,8 +107,6 @@ System.register(["angular2/router", "../services/flug.service", "angular2/core",
                         ]
                     }),
                     router_2.CanActivate(function (next, prev) {
-                        //next.componentType = Home;
-                        // next.componentType = Home;
                         return true;
                     }), 
                     __metadata('design:paramtypes', [flug_service_1.FlugService, router_1.RouteParams])

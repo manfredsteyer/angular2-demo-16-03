@@ -9,6 +9,7 @@ import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 import 'rxjs/add/operator/map';
 import {Flug} from "../models/flug";
+import {Control} from "angular2/common";
 
 var HTTP_MOCK_PROVIDERS = [
     BaseRequestOptions,
@@ -22,7 +23,7 @@ describe('FlugSuchen with Mock', () => {
  
     beforeEachProviders(() => [
         FORM_PROVIDERS,
-        HTTP_MOCK_PROVIDERS,
+        HTTP_MOCK_PROVIDERS, // HTTP_PROVIDERS
         FlugSuchen,
         FlugService,
         provide("BASE_URL", {useValue: 'http://www.angular.at/api'}),
@@ -46,8 +47,12 @@ describe('FlugSuchen with Mock', () => {
                 }
             });
             
-            flugSuchen.filter.controls['von'].value = "Graz";
-            flugSuchen.filter.controls['nach'].value = "Hamburg";
+            var von = <Control>flugSuchen.filter.controls['von'];
+            var nach = <Control>flugSuchen.filter.controls['nach'];
+
+            von.updateValue('Graz');
+            nach.updateValue('Hamburg');
+
     
              // Act
             return flugSuchen.suchen().then((fluege: Flug[]) => {

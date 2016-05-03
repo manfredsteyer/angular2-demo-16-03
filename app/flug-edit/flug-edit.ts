@@ -5,10 +5,16 @@ import {Component} from "angular2/core";
 import {OrtValidatorDirective} from "../validation/ort-validator.directive";
 import {OrtAsyncValidatorDirective} from "../validation/ort-async-validator-directive";
 import {DateValueAccessor} from "../validation/date-value-accessor";
+import {DateComponent} from "../date-component/date-component";
 
 @Component({
     templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html',
-    directives: [OrtValidatorDirective, OrtAsyncValidatorDirective, DateValueAccessor]
+    directives: [
+        OrtValidatorDirective,
+        OrtAsyncValidatorDirective,
+        DateValueAccessor,
+        DateComponent
+    ]
 })
 export class FlugEdit {
 

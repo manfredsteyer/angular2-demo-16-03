@@ -18,6 +18,10 @@
     <div class="form-group">
         <label>Datum</label>
         <input [(ngModel)]="flug.datum" date format="en" class="form-control">
+
+
+        <date-component [(date)]="flug.datum">
+        </date-component>
         {{ flug.datum }}
     </div>
 

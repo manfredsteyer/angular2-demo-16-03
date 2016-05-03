@@ -1,4 +1,4 @@
-System.register(["angular2/router", "../services/flug.service", "angular2/core", "../validation/ort-validator.directive", "../validation/ort-async-validator-directive", "../validation/date-value-accessor"], function(exports_1) {
+System.register(["angular2/router", "../services/flug.service", "angular2/core", "../validation/ort-validator.directive", "../validation/ort-async-validator-directive", "../validation/date-value-accessor", "../date-component/date-component"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/router", "../services/flug.service", "angular2/core",
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var router_1, flug_service_1, core_1, ort_validator_directive_1, ort_async_validator_directive_1, date_value_accessor_1;
+    var router_1, flug_service_1, core_1, ort_validator_directive_1, ort_async_validator_directive_1, date_value_accessor_1, date_component_1;
     var FlugEdit;
     return {
         setters:[
@@ -29,6 +29,9 @@ System.register(["angular2/router", "../services/flug.service", "angular2/core",
             },
             function (date_value_accessor_1_1) {
                 date_value_accessor_1 = date_value_accessor_1_1;
+            },
+            function (date_component_1_1) {
+                date_component_1 = date_component_1_1;
             }],
         execute: function() {
             FlugEdit = (function () {
@@ -61,7 +64,12 @@ System.register(["angular2/router", "../services/flug.service", "angular2/core",
                 FlugEdit = __decorate([
                     core_1.Component({
                         templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html',
-                        directives: [ort_validator_directive_1.OrtValidatorDirective, ort_async_validator_directive_1.OrtAsyncValidatorDirective, date_value_accessor_1.DateValueAccessor]
+                        directives: [
+                            ort_validator_directive_1.OrtValidatorDirective,
+                            ort_async_validator_directive_1.OrtAsyncValidatorDirective,
+                            date_value_accessor_1.DateValueAccessor,
+                            date_component_1.DateComponent
+                        ]
                     }), 
                     __metadata('design:paramtypes', [flug_service_1.FlugService, router_1.RouteParams])
                 ], FlugEdit);

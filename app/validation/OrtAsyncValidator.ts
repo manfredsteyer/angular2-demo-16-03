@@ -1,4 +1,5 @@
 import {Control} from "angular2/common";
+import {AbstractControl} from "angular2/common";
 /**
  * Created by steyer on 02.05.2016.
  */
@@ -6,7 +7,7 @@ import {Control} from "angular2/common";
 
 export class OrtAsyncValidator {
 
-    static validateAsync(c: Control): Promise<any> {
+    static validateAsync(c: AbstractControl): Promise<any> {
 
         return new Promise<any>((resolve /*, reject*/) => {
 

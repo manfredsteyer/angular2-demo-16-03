@@ -18,8 +18,6 @@ export function validateAlternative(fieldName1: string, fieldName2: string)  {
 }
 
 
-
-
 export class NotEqualValidator {
 
     static validate(fieldName1: string, fieldName2: string)  {

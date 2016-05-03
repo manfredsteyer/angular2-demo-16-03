@@ -3,7 +3,7 @@
 <form [ngFormModel]="filter">
     <div class="form-group">
         <label>Von</label>
-        <input class="form-control" ngControl="von">
+        <input class="form-control" ngControl="von" name="von">
 
         <div *ngIf="!filter.controls.von.valid && !filter.controls.von.pending">
             Von weist Fehler auf!
@@ -37,7 +37,7 @@
     </div>
     <div class="form-group">
         <label>Nach</label>
-        <input class="form-control" ngControl="nach">
+        <input class="form-control" ngControl="nach" name="nach">
     </div>
     <div class="form-group">
         <input
@@ -47,7 +47,15 @@
                 (click)="suchen()">
     </div>
 
+    <!--
+    <div *ngFor="#entry of formDesc">
+        <label>{{entry.label}}</label>
+        <input [ngControl]="entry.fieldName">
+    </div>
+    -->
 </form>
+
+
 
 <div *ngFor="#flug of fluege" class="col-sm-4">
 

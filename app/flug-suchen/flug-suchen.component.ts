@@ -33,8 +33,14 @@ export class FlugSuchen {
     public filter: ControlGroup;
 
     public selectedFlug: Flug;
+    public formDesc;
 
     constructor(private flugService: FlugService, fb: FormBuilder) {
+
+        this.formDesc = [
+            { label: 'Abflugort', fieldName: 'von' },
+            { label: 'Zielort', fieldName: 'nach', control: null },
+        ];
 
         this.filter = fb.group({
             von: [
@@ -78,18 +84,8 @@ export class FlugSuchen {
         var von = this.filter.value.von;
         var nach = this.filter.value.nach;
 
-        this.flugService
-            .find(von, nach);
+        return this.flugService.find(von, nach);
 
-/*
-            .then((fluege: Array<Flug>) => {
-                this.fluege = fluege;
-            })
-            .catch((err) => {
-                console.error('Fehler beim Laden von Flügen!');
-                console.error(err);
-            });
-*/
     }
 
     public select(flug: Flug) {

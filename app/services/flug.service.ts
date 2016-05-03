@@ -3,6 +3,7 @@ import {Headers} from "angular2/http";
 import {URLSearchParams} from "angular2/http";
 import {Injectable} from "angular2/core";
 import {Inject} from "angular2/core";
+import {Flug} from "../models/flug";
 
 @Injectable()
 export class FlugService {
@@ -45,30 +46,35 @@ export class FlugService {
             .map(response => response.text());
     }
 
-    public find(von: string, nach: string) {
+    public find(von: string, nach: string): Promise<Flug[]> {
 
-        var headers = new Headers();
-        headers.set('Accept', 'text/json');
+        return new Promise((resolve, reject) => {
 
-        var search = new URLSearchParams();
-        search.set('abflugort', von);
-        search.set('zielort', nach);
+            var headers = new Headers();
+            headers.set('Accept', 'text/json');
 
-        var url = this.baseUrl + "/flug";
+            var search = new URLSearchParams();
+            search.set('abflugort', von);
+            search.set('zielort', nach);
 
-        return this
-                .http
-                .get(url, { search, headers })
-                .map(response => response.json())
-                .subscribe(
-                    (fluege) => {
-                        this.fluege = fluege;
-                        this.error = "";
-                    },
-                    (err) => {
-                        this.error = err;
-                    }
-                )
+            var url = this.baseUrl + "/flug";
+
+            return this
+                    .http
+                    .get(url, { search, headers })
+                    .map(response => response.json())
+                    .subscribe(
+                        (fluege) => {
+                            this.fluege = fluege;
+                            this.error = "";
+                            resolve(fluege);
+                        },
+                        (err) => {
+                            this.error = err;
+                            reject(err);
+                        }
+                    );
+        });
     }
 
 }

@@ -7,7 +7,7 @@ import {ChangeDetectionStrategy} from "angular2/core";
 
 @Component({
     selector: 'flug-card',
-    templateUrl: '/angular2-steyer/app/flug-card/flug-card.html',
+    templateUrl: 'app/flug-card/flug-card.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlugCard {

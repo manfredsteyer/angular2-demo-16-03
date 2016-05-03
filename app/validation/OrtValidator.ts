@@ -1,9 +1,10 @@
 import {Control, Validator} from "angular2/common";
+import {AbstractControl} from "angular2/common";
 
 
 export class OrtValidator {
 
-    public static validate(c: Control): any {
+    public static validate(c: AbstractControl): any {
 
         if (c.value == 'Graz'
             || c.value == 'Frankfurt'

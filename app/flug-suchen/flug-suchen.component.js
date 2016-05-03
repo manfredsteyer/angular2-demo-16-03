@@ -44,6 +44,10 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
             FlugSuchen = (function () {
                 function FlugSuchen(flugService, fb) {
                     this.flugService = flugService;
+                    this.formDesc = [
+                        { label: 'Abflugort', fieldName: 'von' },
+                        { label: 'Zielort', fieldName: 'nach', control: null },
+                    ];
                     this.filter = fb.group({
                         von: [
                             'Graz',
@@ -78,17 +82,7 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                 FlugSuchen.prototype.suchen = function () {
                     var von = this.filter.value.von;
                     var nach = this.filter.value.nach;
-                    this.flugService
-                        .find(von, nach);
-                    /*
-                                .then((fluege: Array<Flug>) => {
-                                    this.fluege = fluege;
-                                })
-                                .catch((err) => {
-                                    console.error('Fehler beim Laden von Flügen!');
-                                    console.error(err);
-                                });
-                    */
+                    return this.flugService.find(von, nach);
                 };
                 FlugSuchen.prototype.select = function (flug) {
                     this.selectedFlug = flug;

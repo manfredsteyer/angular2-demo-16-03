@@ -2,9 +2,13 @@
 import {RouteParams} from "angular2/router";
 import {FlugService} from "../services/flug.service";
 import {Component} from "angular2/core";
+import {OrtValidatorDirective} from "../validation/ort-validator.directive";
+import {OrtAsyncValidatorDirective} from "../validation/ort-async-validator-directive";
+import {DateValueAccessor} from "../validation/date-value-accessor";
 
 @Component({
-    templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html'
+    templateUrl: '/angular2-steyer/app/flug-edit/flug-edit.html',
+    directives: [OrtValidatorDirective, OrtAsyncValidatorDirective, DateValueAccessor]
 })
 export class FlugEdit {
 

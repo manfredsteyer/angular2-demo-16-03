@@ -42,7 +42,7 @@ System.register(["angular2/core"], function(exports_1) {
                 FlugCard = __decorate([
                     core_1.Component({
                         selector: 'flug-card',
-                        templateUrl: '/angular2-steyer/app/flug-card/flug-card.html',
+                        templateUrl: 'app/flug-card/flug-card.html',
                         changeDetection: core_5.ChangeDetectionStrategy.OnPush
                     }), 
                     __metadata('design:paramtypes', [])

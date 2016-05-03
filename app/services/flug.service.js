@@ -52,21 +52,25 @@ System.register(["angular2/http", "angular2/core"], function(exports_1) {
                 };
                 FlugService.prototype.find = function (von, nach) {
                     var _this = this;
-                    var headers = new http_2.Headers();
-                    headers.set('Accept', 'text/json');
-                    var search = new http_3.URLSearchParams();
-                    search.set('abflugort', von);
-                    search.set('zielort', nach);
-                    var url = this.baseUrl + "/flug";
-                    return this
-                        .http
-                        .get(url, { search: search, headers: headers })
-                        .map(function (response) { return response.json(); })
-                        .subscribe(function (fluege) {
-                        _this.fluege = fluege;
-                        _this.error = "";
-                    }, function (err) {
-                        _this.error = err;
+                    return new Promise(function (resolve, reject) {
+                        var headers = new http_2.Headers();
+                        headers.set('Accept', 'text/json');
+                        var search = new http_3.URLSearchParams();
+                        search.set('abflugort', von);
+                        search.set('zielort', nach);
+                        var url = _this.baseUrl + "/flug";
+                        return _this
+                            .http
+                            .get(url, { search: search, headers: headers })
+                            .map(function (response) { return response.json(); })
+                            .subscribe(function (fluege) {
+                            _this.fluege = fluege;
+                            _this.error = "";
+                            resolve(fluege);
+                        }, function (err) {
+                            _this.error = err;
+                            reject(err);
+                        });
                     });
                 };
                 FlugService = __decorate([

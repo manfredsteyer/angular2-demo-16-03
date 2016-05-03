@@ -8,7 +8,17 @@
     {{ message }}
 </div>
 
-<form #f="ngForm">
+<div *ngIf="warnDialog.show" class="alert alert-warning">
+    <div>
+        Daten wurden nicht gespeichert! Trotzdem Maske verlassen?
+    </div>
+    <div>
+        <a href="javascript:void(0)" (click)="deactive(true)" class="btn btn-danger">Ja</a>
+        <a href="javascript:void(0)" (click)="deactive(false)" class="btn btn-default">Nein</a>
+    </div>
+</div>
+
+<form #f="ngForm" (change)="formChanged()">
 
     <div class="form-group">
         <label>Id</label>

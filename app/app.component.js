@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router", "./home/home", "./flug-buchen/flug-buchen"], function(exports_1) {
+System.register(["angular2/core", "angular2/router", "./home/home", "./flug-buchen/flug-buchen", './services/flug-event-service', "./warenkorb/warnkorb"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/router", "./home/home", "./flug-buch
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, router_2, home_1, flug_buchen_1;
+    var core_1, router_1, router_2, home_1, flug_buchen_1, flug_event_service_1, warnkorb_1;
     var AppComponent;
     return {
         setters:[
@@ -24,6 +24,12 @@ System.register(["angular2/core", "angular2/router", "./home/home", "./flug-buch
             },
             function (flug_buchen_1_1) {
                 flug_buchen_1 = flug_buchen_1_1;
+            },
+            function (flug_event_service_1_1) {
+                flug_event_service_1 = flug_event_service_1_1;
+            },
+            function (warnkorb_1_1) {
+                warnkorb_1 = warnkorb_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -33,7 +39,8 @@ System.register(["angular2/core", "angular2/router", "./home/home", "./flug-buch
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES] // router-outlet, routerLink
+                        directives: [router_1.ROUTER_DIRECTIVES, warnkorb_1.Warenkorb],
+                        providers: [flug_event_service_1.FlugEventService]
                     }),
                     router_2.RouteConfig([
                         { path: '/home', component: home_1.Home, name: 'Home', useAsDefault: true },

@@ -14,6 +14,7 @@ import {Validators} from "angular2/common";
 import {OrtValidator} from "../validation/OrtValidator";
 import {OrtAsyncValidator} from "../validation/OrtAsyncValidator";
 import {NotEqualValidator, validateAlternative} from "../validation/NotEqualValidator";
+import {FlugEventService} from "../services/flug-event-service";
 
 declare var fetch: any;
 
@@ -35,7 +36,14 @@ export class FlugSuchen {
     public selectedFlug: Flug;
     public formDesc;
 
-    constructor(private flugService: FlugService, fb: FormBuilder) {
+    constructor(
+        private flugEventService: FlugEventService,
+        private flugService: FlugService,
+        fb: FormBuilder) {
+
+        this.flugEventService.selectedFlug$.subscribe(
+            (flug) => console.debug(<any>flug)
+        )
 
         this.formDesc = [
             { label: 'Abflugort', fieldName: 'von' },
@@ -90,6 +98,7 @@ export class FlugSuchen {
 
     public select(flug: Flug) {
         this.selectedFlug = flug;
+        this.flugEventService.selectedFlug$.next(flug);
     }
 
 }

@@ -17,6 +17,7 @@ describe("FlugApp", function() {
         nachFilter.clear();
        
         vonFilter.sendKeys("Graz");
+
         nachFilter.sendKeys("Ha");
         nachFilter.sendKeys("m");
         nachFilter.sendKeys("bu");

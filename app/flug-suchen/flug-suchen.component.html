@@ -61,7 +61,8 @@
 
     <flug-card
             [item]="flug"
-            [(selectedItem)]="selectedFlug">
+            [selectedItem]="selectedFlug"
+            (selectedItemChange)="select($event)">
 
         <a class="btn btn-default" [routerLink]="['../FlugEdit', { id: flug.id } ]">Editieren</a>
 

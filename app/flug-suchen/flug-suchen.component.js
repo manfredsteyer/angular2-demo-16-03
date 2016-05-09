@@ -1,4 +1,4 @@
-System.register(['angular2/core', "../services/flug.service", "../services/app-services", "../pipes/ort.pipe", "angular2/router", "angular2/common", "../validation/OrtValidator", "../validation/OrtAsyncValidator", "../validation/NotEqualValidator"], function(exports_1) {
+System.register(['angular2/core', "../services/flug.service", "../services/app-services", "../pipes/ort.pipe", "angular2/router", "angular2/common", "../validation/OrtValidator", "../validation/OrtAsyncValidator", "../validation/NotEqualValidator", "../services/flug-event-service"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, flug_service_1, app_services_1, ort_pipe_1, router_1, common_1, common_2, OrtValidator_1, OrtAsyncValidator_1, NotEqualValidator_1;
+    var core_1, flug_service_1, app_services_1, ort_pipe_1, router_1, common_1, common_2, OrtValidator_1, OrtAsyncValidator_1, NotEqualValidator_1, flug_event_service_1;
     var FlugSuchen;
     return {
         setters:[
@@ -39,11 +39,16 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
             },
             function (NotEqualValidator_1_1) {
                 NotEqualValidator_1 = NotEqualValidator_1_1;
+            },
+            function (flug_event_service_1_1) {
+                flug_event_service_1 = flug_event_service_1_1;
             }],
         execute: function() {
             FlugSuchen = (function () {
-                function FlugSuchen(flugService, fb) {
+                function FlugSuchen(flugEventService, flugService, fb) {
+                    this.flugEventService = flugEventService;
                     this.flugService = flugService;
+                    this.flugEventService.selectedFlug$.subscribe(function (flug) { return console.debug(flug); });
                     this.formDesc = [
                         { label: 'Abflugort', fieldName: 'von' },
                         { label: 'Zielort', fieldName: 'nach', control: null },
@@ -86,6 +91,7 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                 };
                 FlugSuchen.prototype.select = function (flug) {
                     this.selectedFlug = flug;
+                    this.flugEventService.selectedFlug$.next(flug);
                 };
                 FlugSuchen = __decorate([
                     core_1.Component({
@@ -95,7 +101,7 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                         directives: [router_1.ROUTER_DIRECTIVES,],
                         pipes: [ort_pipe_1.OrtPipe]
                     }), 
-                    __metadata('design:paramtypes', [flug_service_1.FlugService, common_1.FormBuilder])
+                    __metadata('design:paramtypes', [flug_event_service_1.FlugEventService, flug_service_1.FlugService, common_1.FormBuilder])
                 ], FlugSuchen);
                 return FlugSuchen;
             })();

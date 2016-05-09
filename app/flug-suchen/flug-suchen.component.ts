@@ -81,9 +81,28 @@ export class FlugSuchen {
 
     }
 
+    public delay() {
+
+        // Flug verändern !!!
+        // Flug-Array verändern !!!
+
+        var datum = new Date(this.fluege[0].datum);
+        datum.setMinutes(datum.getMinutes() + 15);
+
+        var oldFlug = this.fluege[0];
+
+        // Neuen Flug einrichten, weil alter Flug "immutable" ist!
+        this.fluege[0] = {
+            abflugort: oldFlug.abflugort,
+            zielort: oldFlug.zielort,
+            id: oldFlug.id,
+            datum: datum.toISOString()
+        };
+    }
+
     // public fluege: Array<Flug> = [];
 
-    public get fluege() {
+    public get fluege(): Array<Flug> {
         return this.flugService.fluege;
     }
 

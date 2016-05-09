@@ -4,6 +4,7 @@ import {URLSearchParams} from "angular2/http";
 import {Injectable} from "angular2/core";
 import {Inject} from "angular2/core";
 import {Flug} from "../models/flug";
+import {ReplaySubject} from "rxjs/subject/ReplaySubject";
 
 @Injectable()
 export class FlugService {
@@ -12,7 +13,7 @@ export class FlugService {
                 @Inject('BASE_URL') private baseUrl: string) {
     }
 
-    public fluege: Array<any>;
+    public fluege$: ReplaySubject<Flug[]> = new ReplaySubject(1);
     public error: string;
 
 
@@ -64,8 +65,10 @@ export class FlugService {
                     .get(url, { search, headers })
                     .map(response => response.json())
                     .subscribe(
-                        (fluege) => {
-                            this.fluege = fluege;
+                        (fluege: Flug[]) => {
+
+                            // this.fluege = fluege;
+                            this.fluege$.next(fluege);
                             this.error = "";
                             resolve(fluege);
                         },

@@ -65,7 +65,7 @@
 
 
 
-<div *ngFor="#flug of fluege" class="col-sm-4">
+<div *ngFor="#flug of fluege$ | async" class="col-sm-4">
 
     <flug-card
             [item]="flug"

@@ -15,6 +15,7 @@ import {OrtValidator} from "../validation/OrtValidator";
 import {OrtAsyncValidator} from "../validation/OrtAsyncValidator";
 import {NotEqualValidator, validateAlternative} from "../validation/NotEqualValidator";
 import {FlugEventService} from "../services/flug-event-service";
+import {Subject} from "rxjs/Subject";
 
 declare var fetch: any;
 
@@ -24,7 +25,8 @@ declare var fetch: any;
     templateUrl: 'app/flug-suchen/flug-suchen.component.html',
     providers: [APP_SERVICES],
     directives: [ROUTER_DIRECTIVES, /*FlugCard*/],
-    pipes: [OrtPipe]
+    pipes: [OrtPipe],
+    // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlugSuchen {
 
@@ -83,12 +85,8 @@ export class FlugSuchen {
 
     public delay() {
 
-        // Flug verändern !!!
-        // Flug-Array verändern !!!
-
         var datum = new Date(this.fluege[0].datum);
         datum.setMinutes(datum.getMinutes() + 15);
-
         var oldFlug = this.fluege[0];
 
         // Neuen Flug einrichten, weil alter Flug "immutable" ist!
@@ -102,8 +100,8 @@ export class FlugSuchen {
 
     // public fluege: Array<Flug> = [];
 
-    public get fluege(): Array<Flug> {
-        return this.flugService.fluege;
+    public get fluege$(): Subject<Flug[]> {
+        return this.flugService.fluege$;
     }
 
     public suchen() {

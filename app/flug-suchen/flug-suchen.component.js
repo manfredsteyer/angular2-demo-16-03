@@ -77,8 +77,6 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                     });
                 }
                 FlugSuchen.prototype.delay = function () {
-                    // Flug verändern !!!
-                    // Flug-Array verändern !!!
                     var datum = new Date(this.fluege[0].datum);
                     datum.setMinutes(datum.getMinutes() + 15);
                     var oldFlug = this.fluege[0];
@@ -90,10 +88,10 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                         datum: datum.toISOString()
                     };
                 };
-                Object.defineProperty(FlugSuchen.prototype, "fluege", {
+                Object.defineProperty(FlugSuchen.prototype, "fluege$", {
                     // public fluege: Array<Flug> = [];
                     get: function () {
-                        return this.flugService.fluege;
+                        return this.flugService.fluege$;
                     },
                     enumerable: true,
                     configurable: true
@@ -113,7 +111,7 @@ System.register(['angular2/core', "../services/flug.service", "../services/app-s
                         templateUrl: 'app/flug-suchen/flug-suchen.component.html',
                         providers: [app_services_1.APP_SERVICES],
                         directives: [router_1.ROUTER_DIRECTIVES,],
-                        pipes: [ort_pipe_1.OrtPipe]
+                        pipes: [ort_pipe_1.OrtPipe],
                     }), 
                     __metadata('design:paramtypes', [flug_event_service_1.FlugEventService, flug_service_1.FlugService, common_1.FormBuilder])
                 ], FlugSuchen);

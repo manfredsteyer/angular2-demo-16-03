@@ -1,4 +1,4 @@
-System.register(["angular2/http", "angular2/core"], function(exports_1) {
+System.register(["angular2/http", "angular2/core", "rxjs/subject/ReplaySubject"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,7 +11,7 @@ System.register(["angular2/http", "angular2/core"], function(exports_1) {
     var __param = (this && this.__param) || function (paramIndex, decorator) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
-    var http_1, http_2, http_3, core_1, core_2;
+    var http_1, http_2, http_3, core_1, core_2, ReplaySubject_1;
     var FlugService;
     return {
         setters:[
@@ -23,12 +23,16 @@ System.register(["angular2/http", "angular2/core"], function(exports_1) {
             function (core_1_1) {
                 core_1 = core_1_1;
                 core_2 = core_1_1;
+            },
+            function (ReplaySubject_1_1) {
+                ReplaySubject_1 = ReplaySubject_1_1;
             }],
         execute: function() {
             FlugService = (function () {
                 function FlugService(http, baseUrl) {
                     this.http = http;
                     this.baseUrl = baseUrl;
+                    this.fluege$ = new ReplaySubject_1.ReplaySubject(1);
                 }
                 FlugService.prototype.findById = function (id) {
                     var headers = new http_2.Headers();
@@ -64,7 +68,8 @@ System.register(["angular2/http", "angular2/core"], function(exports_1) {
                             .get(url, { search: search, headers: headers })
                             .map(function (response) { return response.json(); })
                             .subscribe(function (fluege) {
-                            _this.fluege = fluege;
+                            // this.fluege = fluege;
+                            _this.fluege$.next(fluege);
                             _this.error = "";
                             resolve(fluege);
                         }, function (err) {

@@ -20,41 +20,22 @@
 
     </style>
 
-    <!--
+
     <base href="./">
-    -->
-    <!-- http://localhost:8080/angular2-starter/x/y/z -->
 
-    <!-- 1. Load libraries -->
-    <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+    <!--
+     http://localhost:8080/index.html/FlugService
+     -->
 
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="node_modules/angular2/bundles/http.dev.js"></script>
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>
 
-    <!-- 2. Configure SystemJS -->
-    <script>
-        System.config({
-            packages: {
-                app: {
-                    format: 'register', // System.register
-                    defaultExtension: 'js' // .js
-                }
-            }
-        });
-        System.import('app/main')
-                .then(null, console.error.bind(console));
-    </script>
 </head>
 
 <!-- 3. Display the application -->
 <body>
+
+    <script src="dist/vendor.js"></script>
+    <script src="dist/app.js"></script>
+
 
     <my-app>Loading...</my-app>
 

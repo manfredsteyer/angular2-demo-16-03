@@ -11,6 +11,8 @@ import {FlugBuchen} from "./flug-buchen/flug-buchen";
 import {FlugEventService} from './services/flug-event-service';
 import {provide} from "angular2/core";
 import {Warenkorb} from "./warenkorb/warnkorb";
+import { OAuthService } from 'angular2-oauth2/oauth-service';
+
 
 
 
@@ -18,7 +20,7 @@ import {Warenkorb} from "./warenkorb/warnkorb";
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     directives: [ROUTER_DIRECTIVES, Warenkorb], // router-outlet, routerLink
-    providers: [FlugEventService]
+    providers: [FlugEventService, OAuthService]
     //providers: [provide(FlugEventService, {useClass: FlugEventService})]
 })
 @RouteConfig([
@@ -27,4 +29,19 @@ import {Warenkorb} from "./warenkorb/warnkorb";
 ])
 export class AppComponent {
 
+    constructor(private oauthService: OAuthService) {
+
+        this.oauthService.loginUrl = "https://steyer-identity-server.azurewebsites.net/identity/connect/authorize"; //Id-Provider?
+        this.oauthService.redirectUri = window.location.origin + "/index.html";
+        this.oauthService.clientId = "spa-demo";
+        this.oauthService.scope = "openid profile email voucher";
+        this.oauthService.issuer = "https://steyer-identity-server.azurewebsites.net/identity";
+        this.oauthService.oidc = true;
+
+        this.oauthService.tryLogin({}); // <-- Parsen der Tokens aus der URL
+
+
+    }
+
 }
+

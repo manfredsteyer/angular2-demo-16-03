@@ -5,12 +5,15 @@ import {Injectable} from "angular2/core";
 import {Inject} from "angular2/core";
 import {Flug} from "../models/flug";
 import {ReplaySubject} from "rxjs/subject/ReplaySubject";
+import {OAuthService} from "angular2-oauth2/oauth-service";
 
 @Injectable()
 export class FlugService {
 
     constructor(private http: Http,
-                @Inject('BASE_URL') private baseUrl: string) {
+                @Inject('BASE_URL') private baseUrl: string,
+                private oauthService: OAuthService
+                ) {
     }
 
     public fluege$: ReplaySubject<Flug[]> = new ReplaySubject(1);
@@ -53,12 +56,18 @@ export class FlugService {
 
             var headers = new Headers();
             headers.set('Accept', 'text/json');
+            headers.set('Authorization', 'Bearer ' + this.oauthService.getAccessToken() );
 
             var search = new URLSearchParams();
             search.set('abflugort', von);
             search.set('zielort', nach);
 
-            var url = this.baseUrl + "/flug";
+            // Ohne Auth. erreichbarer Service
+            // var url = this.baseUrl + "/flug";
+
+            // Dieser Service hier verlangt ein Token:
+            var url = this.baseUrl + "/SecureFlug";
+
 
             return this
                     .http
@@ -73,6 +82,7 @@ export class FlugService {
                             resolve(fluege);
                         },
                         (err) => {
+                            console.error(err);
                             this.error = err;
                             reject(err);
                         }

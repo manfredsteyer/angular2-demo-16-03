@@ -23,8 +23,13 @@ services = [
     ROUTER_PROVIDERS,
     provide('BASE_URL', {useValue: 'http://www.angular.at/api'}),
     provide(PLATFORM_DIRECTIVES, {useValue: FlugCard, multi: true}),
-    provide(LocationStrategy, {useClass: HashLocationStrategy})
+    // provide(LocationStrategy, {useClass: HashLocationStrategy})
 
 ];
 
 bootstrap(AppComponent, services);
+
+
+declare var __filename: any;
+
+console.debug(__filename);
